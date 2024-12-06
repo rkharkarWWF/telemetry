@@ -31,3 +31,12 @@ lulc_map <- list(
   "11" = "Rangeland",
   "100" = "Tea plantation"
 )
+lulc_colormap <- c(
+  "Water" = "#3FDCE3",
+  "Forest" = "#0B5606",
+  "Cropland" = "#6B8531",
+  "Built-up" = "#000000",
+  "Sandbank" = "#D3CE21",
+  "Rangeland" = "#85F90A",
+  "Tea plantation" = "#448708"
+)

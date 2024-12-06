@@ -26,13 +26,19 @@ create_timediff_bar_chart <- function(
   subplot_title,
   tick_labels,
   ymax_value,
-  stacked = NULL
+  stacked = NULL,
+  colormap = NULL
 ) {
   plot_geom <- geom_col()
   plot_mapping <- aes(x = bin, y = percent_in_bin)
   if (!is.null(stacked) == TRUE) {
     plot_geom <- geom_col(position = "stack")
     plot_mapping <- aes(x = bin, y = percent_in_bin, fill = lulc)
+  }
+
+  scale_fill <- NULL
+  if (!is.null(colormap)) {
+    scale_fill <- scale_fill_manual(values = colormap)
   }
 
   ggplot(
@@ -47,5 +53,6 @@ create_timediff_bar_chart <- function(
     ) +
     lims(y = c(0, ymax_value)) +
     scale_x_discrete(labels = tick_labels) +
+    scale_fill +
     theme_minimal()
 }

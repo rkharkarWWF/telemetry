@@ -15,7 +15,9 @@ movement_data_grouped <- read_csv(
   file = config$telemetry_with_lulc,
   show_col_types = FALSE
 ) %>%
-  mutate(lulc = factor(config$lulc_map[as.character(lulc)] %>% unlist())) %>%
+  mutate(
+    lulc = factor(config$lulc_map[as.character(lulc)] %>% unlist())
+  ) %>%
   group_by(collar_id)
 
 time_difference_bins <- movement_data_grouped %>%
@@ -79,7 +81,8 @@ summary_by_bin_lulc <- time_difference_bins %>%
       subplot_title = sub(pattern = "\\:.*", "", .y),
       tick_labels = config$histogram_bins,
       ymax_value = max_percentage,
-      stacked = TRUE
+      stacked = TRUE,
+      colormap = config$lulc_colormap
     ))
   )
 
